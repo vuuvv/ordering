@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+	.container
+		a.btn.btn-primary(href='/sms/send') 发送短信
+		table.table(style='margin-top: 15px')
+			tr
+				th 手机号
+				th 发送日期
+				th 状态
+				th 操作
+			for item in items
+				tr
+					td= item.mobile
+					td= moment(item.date).format("YYYY-MM-DD HH:mm:ss")
+					td= smsStatus(item.status)
+					td
+						a.query(href='/sms/item/#{item._id}') 查询状态
